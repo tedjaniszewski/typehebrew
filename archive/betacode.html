@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>TypeHebrew | Beta Code Converter</title>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cardo&subset=latin,hebrew">
+        <style type="text/css">
+            h1 {
+                text-align: center;
+                font-size: 3em;
+                font-family: 'Cardo', serif;
+            }
+            #content {
+                text-align: center;
+            }
+            #hebrew {
+                width: 400px;
+                height: 200px;
+                padding: 10px;
+                font-family: 'Cardo';
+                font-size: 2.5em;
+                direction: rtl;
+                overflow: auto;
+            }
+            #betacode {
+                width: 400px;
+                height: 200px;
+                padding: 10px;
+                font-family: 'Cardo';
+                font-size: 2em;
+                overflow: auto;
+            }
+        </style>
+        <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="jquery.textchange.min.js"></script>
+        <script type="text/javascript">
+            $(
+                function() {
+                    $('textarea#hebrew').bind('textchange',
+                        function (event, previousText) {
+                            var textarea = $(this);
+                            var betacode = $('#betacode');
+                            var text = textarea.val();
+                            text = text.replace(/\u05D0/gm, ')');
+                            text = text.replace(/\u05D1/gm, 'B');
+                            text = text.replace(/\u05D2/gm, 'G');
+                            text = text.replace(/\u05D3/gm, 'D');
+                            text = text.replace(/\u05D4/gm, 'H');
+                            text = text.replace(/\u05D5/gm, 'W');
+                            text = text.replace(/\u05D6/gm, 'Z');
+                            text = text.replace(/\u05D7/gm, 'X');
+                            text = text.replace(/\u05D8/gm, '+');
+                            text = text.replace(/\u05D9/gm, 'Y');
+                            text = text.replace(/\u05DB/gm, 'K');
+                            text = text.replace(/\u05DC/gm, 'L');
+                            text = text.replace(/\u05DE/gm, 'M');
+                            text = text.replace(/\u05E0/gm, 'N');
+                            text = text.replace(/\u05E1/gm, 'S');
+                            text = text.replace(/\u05E2/gm, '(');
+                            text = text.replace(/\u05E4/gm, 'P');
+                            text = text.replace(/\u05E6/gm, 'C');
+                            text = text.replace(/\u05E7/gm, 'Q');
+                            text = text.replace(/\u05E8/gm, 'R');
+                            text = text.replace(/\u05E9/gm, '#');
+                            text = text.replace(/\u05E9\u05C1/gm, '&');
+                            text = text.replace(/\u05E9\u05C2/gm, '$');
+                            text = text.replace(/\u05C1/gm, '');
+                            text = text.replace(/\u05C2/gm, '');
+                            text = text.replace(/\u05EA/gm, 'T');
+                            text = text.replace(/\u05B2/gm, ':A');
+                            text = text.replace(/\u05B3/gm, ':F');
+                            text = text.replace(/\u05B1/gm, ':E');
+                            text = text.replace(/\u05B7/gm, 'A');
+                            text = text.replace(/\u05B8/gm, 'F');
+                            text = text.replace(/\u05B4/gm, 'I');
+                            text = text.replace(/\u05B6/gm, 'E');
+                            text = text.replace(/\u05B5/gm, '"');
+                            text = text.replace(/\u05B9/gm, 'O');
+                            text = text.replace(/\u05BB/gm, 'U');
+                            text = text.replace(/\u05B0/gm, ':');
+                            text = text.replace(/\u05BE/gm, '-');
+                            text = text.replace(/\u05BC/gm, '.');
+                            text = text.replace(/\u05BF/gm, ',');
+                            text = text.replace(/\u05C3/gm, ';');
+                            betacode.val(text);
+                        }
+                    );
+                    $('textarea#betacode').bind('textchange',
+                        function (event) {
+                            var textarea = $(this);
+                            var hebrew = $('#hebrew');
+                            var text = textarea.val();
+                            text = text.replace(/\)/gm, '\u05D0');
+                            text = text.replace(/B/igm, '\u05D1');
+                            text = text.replace(/G/igm, '\u05D2');
+                            text = text.replace(/D/igm, '\u05D3');
+                            text = text.replace(/H/igm, '\u05D4');
+                            text = text.replace(/W/igm, '\u05D5');
+                            text = text.replace(/Z/igm, '\u05D6');
+                            text = text.replace(/X/igm, '\u05D7');
+                            text = text.replace(/\+/gm, '\u05D8');
+                            text = text.replace(/Y/igm, '\u05D9');
+                            text = text.replace(/K/igm, '\u05DB');
+                            text = text.replace(/L/igm, '\u05DC');
+                            text = text.replace(/M/igm, '\u05DE');
+                            text = text.replace(/N/igm, '\u05E0');
+                            text = text.replace(/S/igm, '\u05E1');
+                            text = text.replace(/\(/gm, '\u05E2');
+                            text = text.replace(/P/igm, '\u05E4');
+                            text = text.replace(/C/igm, '\u05E6');
+                            text = text.replace(/Q/igm, '\u05E7');
+                            text = text.replace(/R/igm, '\u05E8');
+                            text = text.replace(/#/gm, '\u05E9');
+                            text = text.replace(/&/gm, '\u05E9\u05C1');
+                            text = text.replace(/\$/gm, '\u05E9\u05C2');
+                            text = text.replace(/T/igm, '\u05EA');
+                            text = text.replace(/:A/igm, '\u05B2');
+                            text = text.replace(/:F/igm, '\u05B3');
+                            text = text.replace(/:E/igm, '\u05B1');
+                            text = text.replace(/A:/igm, '\u05B2');
+                            text = text.replace(/F:/igm, '\u05B3');
+                            text = text.replace(/E:/igm, '\u05B1');
+                            text = text.replace(/A/igm, '\u05B7');
+                            text = text.replace(/F/igm, '\u05B8');
+                            text = text.replace(/I/igm, '\u05B4');
+                            text = text.replace(/E/igm, '\u05B6');
+                            text = text.replace(/"/gm, '\u05B5');
+                            text = text.replace(/O/igm, '\u05B9');
+                            text = text.replace(/U/igm, '\u05BB');
+                            text = text.replace(/:/gm, '\u05B0');
+                            text = text.replace(/-/gm, '\u05BE');
+                            text = text.replace(/\./gm, '\u05BC');
+                            text = text.replace(/,/gm, '\u05BF');
+                            text = text.replace(/;/gm, '\u05C3');
+                            hebrew.val(text);
+                        }
+                    );
+                }
+            );
+        </script>
+	</head>
+    <body>
+        <div id="header">
+            <h1>TypeHebrew | Beta Code Converter</h1>
+        </div>
+        <div id="content">
+            <textarea id="betacode">$:MA( YI&:RF)"L Y:HWFH ):ELOH"YNW. Y:HWFH )EXFD;</textarea>
+            <textarea id="hebrew">שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃</textarea>
+        </div>
+    </body>
+</html>
