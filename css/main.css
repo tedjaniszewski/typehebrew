@@ -97,13 +97,33 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+@font-face {
+    font-family: 'KeterYG';
+    src: url('keteryg.eot');
+    src: url('keteryg.eot?iefix') format('eot'),
+         url('keteryg.woff') format('woff'),
+         url('keteryg.ttf') format('truetype'),
+         url('keteryg.svg#KeterYG') format('svg');
+}
 
+#hebrew {
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    font-family: 'KeterYG';
+    font-size: 22pt;
+    direction: rtl;
+    overflow: auto;
+}
 
-
-
-
-
-
+#betacode {
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    font-family: 'Inconsolata';
+    font-size: 16pt;
+    overflow: auto;
+}
 
 
 
