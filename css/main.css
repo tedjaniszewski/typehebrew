@@ -107,29 +107,29 @@ textarea {
 }
 
 body {
-    font-family: 'Inconsolata', serif;
-    background-color: #2980b9;
-    color: #ecf0f1;
+    font-family: 'Bitter', serif;
+    background-color: #ecf0f1;
+    color: #111;
 }
 
-h1, h2 {
+h1 {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     cursor: default;
     margin: 0;
     font-weight: normal;
-}
-
-h1 {
     font-size: 175pt;
     font-family: "SBL Hebrew";
     height: 190px;
     position: relative;
         top: -50px;
+    z-index: -1;
 }
 
 h2 {
+    margin: 0;
+    font-weight: normal;
     font-size: 18pt;
 }
 
@@ -140,17 +140,26 @@ h3 {
 }
 
 pre {
+    margin: 0 25px;
     font-family: 'Inconsolata', monospace;
+    float: left;
+}
+
+p {
+    margin-top: 0;
+    text-align: left;
 }
 
 a {
     font-weight: bold;
-    color: #ecf0f1;
+    color: #111;
 }
 
 #content {
     text-align: center;
     width: 400px;
+    float: left;
+    margin: 0 50px 50px 50px;
 }
 
 #hebrew {
@@ -159,14 +168,15 @@ a {
     margin: auto;
     font-size: 30pt;
     font-family: "SBL Hebrew", serif;
+    color: #000;
     direction: rtl;
     text-align: right;
     overflow: visible;
 }
 
-#betacode {
+textarea {
     font-family: 'Inconsolata', monospace;
-    background-color: #3498db;
+    background-color: #111;
     width: 400px;
     height: 100px;
     padding: 15px;
@@ -175,7 +185,26 @@ a {
     color: #ecf0f1;
     overflow: auto;
     border: none;
-    border-radius: 8px;
+}
+
+#key, #about {
+    width: 325px;
+    float: left;
+    margin: 275px 0 50px 50px;
+    display: none;
+}
+
+::selection {
+    background:#444;
+    color:#ecf0f1;
+}
+::-moz-selection {
+    background:#444;
+    color:#ecf0f1;
+}
+::-webkit-selection {
+    background:#444;
+    color:#ecf0f1;
 }
 
 

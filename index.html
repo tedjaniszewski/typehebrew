@@ -6,13 +6,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>typehebrew</title>
+        <title>TypeHebrew</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700|Bitter:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
@@ -27,58 +27,60 @@
             <header>
                 <h1>א</h1>
                 <h2>TypeHebrew</h2>
-                <h3>KEY &nbsp; ABOUT</h3>
+                <h3><a id="keylink" href="#">KEY</a> &nbsp; <a id="aboutlink" href="#">ABOUT</a></h3>
             </header>
-            <div id="hebrew">שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃</div>
+            <div id="hebrew" title="Triple-click to select all"></div>
             <br />
             <textarea spellcheck="false" id="betacode">$:ma( yi&:rf)"l y:hwfh ):eloh"ynw. y:hwfh )exfd;</textarea>
-            <div id="key">
+        </div>
+        <div id="key">
 <pre>alef      )
-bet       B
-gimel     G
-dalet     D
-he        H
-waw       W
-zayin     Z
-het       X
+bet       b
+gimel     g
+dalet     d
+he        h
+waw       w
+zayin     z
+het       x
 tet       +
-yod       Y
-kaf       K
-lamed     L
-mem       M
-nun       N
-samek     S
+yod       y
+kaf       k
+lamed     l
+mem       m
+nun       n
+samek     s
 ayin      (
-pe        P
-zade      C
-qof       Q
-resh      R
+pe        p
+tsade     c
+qof       q
+resh      r
 sin/shin  #
 sin       &
 shin      $
-taw       T</pre>
-<pre>patah          A
-qametz         F
-hireq          I
-segol          E
-tsere          "
-holam          O
-qibbuts        U
-shureq         W.
-schwa          :
-holem waw      OW
-hateph-pathah  :A
-hateph-qametz  :F
-hateph-segol   :E
-maqqeph        -
-dagesh         .</pre>
-            </div>
-            <div id="about">
-                <p>There's this great site, <a href="http://typegreek.com/">TypeGreek.com</a>, that converts Latin characters into precomposed polytonic Greek Unicode. I use it all the time! But for years, no one has put together a parallel site for polytonic Hebrew. I found this so irritating that I finally broke down and created one myself. This is that site.</p>
-                <p>The Hebrew font you see is <a href="http://www.sbl-site.org/educational/BiblicalFonts_SBLHebrew.aspx">SBL Hebrew</a>, hosted locally using Font Squirrel's brilliant <a href="http://www.fontsquirrel.com/tools/webfont-generator">webfont generator</a>. The rest of the text is set in Raph Levien's <a href="http://levien.com/type/myfonts/inconsolata.html">Inconsolata</a>, served via <a href="https://www.google.com/fonts">Google Fonts</a>. I'm also indebted to ..., without which I couldn't have put this site together, and to <a href="http://typegreek.com/">TypeGreek.com</a> for inspiring this site.</p>
-                <p>If you've found TypeHebrew helpful and would like to donate, please give something to the folks at <a href="http://siministries.org/">siministires.org</a></p>
-            </div>
+taw       t</pre>
+<pre>patah           a
+qametz          f
+hireq           i
+segol           e
+tsere           "
+holam           o
+qibbuts         u
+shureq         w.
+schwa           :
+holem waw      ow
+hateph-pathah  :a
+hateph-qametz  :f
+hateph-segol   :e
+maqqeph         -
+dagesh          .</pre>
         </div>
+        <div id="about">
+            <p>There's this great site, <a href="http://typegreek.com/">TypeGreek.com</a>, that converts Latin characters into precomposed polytonic Greek Unicode. As a biblical scholar, I use TypeGreek all the time. But for some reason, no one ever got around to making a parallel site for pointed Hebrew. "Someone ought to do that," I would tell myself. A few years later, I finally decided that someone might as well be me.</p>
+            <p>The Hebrew typeface you see is <a href="http://www.sbl-site.org/educational/BiblicalFonts_SBLHebrew.aspx">SBL Hebrew</a>, hosted locally with the help of Font Squirrel's brilliant <a href="http://www.fontsquirrel.com/tools/webfont-generator">webfont generator</a>. The betacode is set in Raph Levien's <a href="http://levien.com/type/myfonts/inconsolata.html">Inconsolata</a> and the interface in Huerta Tipográfica's <a href="http://www.huertatipografica.com/fonts/bitter-ht">Bitter</a>, both served via <a href="https://www.google.com/fonts">Google Fonts</a>. I'm also indebted to <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>, ZURB's <a href="http://zurb.com/playground/jquery-text-change-custom-event">jQuery TextChange Plugin</a>, and <a href="https://c9.io/">Cloud9 IDE</a> which made building this site so much easier. Finally, I want to acknowledge Randy Hoyt, who inspired this project.</p>
+            <p>If you've found TypeHebrew helpful and would like to make a donation, kindly give something to the folks at <a href="http://siministries.org/">St. Irenaeus Ministries</a>.</p>
+        </div>
+
+        <a href="https://github.com/tedjaniszewski/typehebrew"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
