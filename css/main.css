@@ -97,18 +97,8 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-h1 {
-    font-size: 50pt;
-    margin: 0;
-}
-
-body {
-    font-family: 'SBLHebrew';
-    text-align: center;
-}
-
 @font-face {
-    font-family: 'SBLHebrew';
+    font-family: 'SBL Hebrew';
     src: url('fonts/sblhebrew.eot');
     src: url('fonts/sblhebrew.eot?iefix') format('eot'),
          url('fonts/sblhebrew.woff') format('woff'),
@@ -116,74 +106,77 @@ body {
          url('fonts/sblhebrew.svg#SBLHebrew') format('svg');
 }
 
+body {
+    font-family: 'Inconsolata', serif;
+    background-color: #2980b9;
+    color: #ecf0f1;
+}
+
+h1, h2 {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    cursor: default;
+    margin: 0;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 175pt;
+    font-family: "SBL Hebrew";
+    height: 190px;
+    position: relative;
+        top: -50px;
+}
+
+h2 {
+    font-size: 18pt;
+}
+
+h3 {
+    font-size: 10pt;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+pre {
+    font-family: 'Inconsolata', monospace;
+}
+
+a {
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+#content {
+    text-align: center;
+    width: 400px;
+}
+
 #hebrew {
     width: 400px;
-    height: 200px;
-    padding: 15px;
+    height: auto;
     margin: auto;
     font-size: 30pt;
+    font-family: "SBL Hebrew", serif;
     direction: rtl;
     text-align: right;
-    overflow: auto;
+    overflow: visible;
 }
 
 #betacode {
+    font-family: 'Inconsolata', monospace;
+    background-color: #3498db;
     width: 400px;
     height: 100px;
     padding: 15px;
     margin: auto;
-    font-family: 'Inconsolata';
     font-size: 16pt;
+    color: #ecf0f1;
     overflow: auto;
+    border: none;
+    border-radius: 8px;
 }
-
-.round {
-    border: 1px solid #222;
-}
-
-#keyboard {
-    margin: auto;
-    width: 675px;
-    height: 225px;
-}
-
-#keyboard div {
-    float: left;
-    height: 17.5%;
-    width: 5.6%;
-    margin: 0.315%;
-    text-align: left;
-}
-
-#keyboard div label {
-    color: #222;
-    font-size: 60%;
-    margin-left: 5px;
-}
-#keyboard #leftctrl, #keyboard #leftwinkey, #keyboard #leftalt, #keyboard #rightalt, #keyboard #rightwinkey, #keyboard #menu, #keyboard #rightctrl {
-    width: 7.85%;
-}
-#keyboard #tab, #keyboard #backslash {
-    width: 9.75%;
-}
-#keyboard #capslock {
-    width: 11%;
-}
-#keyboard #backspace {
-    width: 13.75%;
-}
-#keyboard #enter, #keyboard #leftshift {
-    width: 15%;
-}
-#keyboard #rightshift {
-    width: 17.5%;
-}
-#keyboard #space {
-    width: 37.2%;
-}
-
-
-
 
 
 /* ==========================================================================
