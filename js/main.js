@@ -4,11 +4,13 @@ $(
         $('#aboutlink').click(
             function () {
                 $('#about').fadeToggle('slow');
+                return false;
             }
         );
         $('#keylink').click(
             function () {
                 $('#key').fadeToggle('slow');
+                return false;
             }
         );
         $('#hebrew').html(convert($('#betacode').val()));
