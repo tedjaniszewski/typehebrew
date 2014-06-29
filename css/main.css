@@ -194,15 +194,15 @@ textarea {
     display: none;
 }
 
-::selection {
+textarea::selection {
     background:#444;
     color:#ecf0f1;
 }
-::-moz-selection {
+textarea::-moz-selection {
     background:#444;
     color:#ecf0f1;
 }
-::-webkit-selection {
+textarea::-webkit-selection {
     background:#444;
     color:#ecf0f1;
 }
