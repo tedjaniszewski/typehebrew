@@ -112,10 +112,16 @@ body {
     color: #111;
 }
 
-h1 {
-    user-select: none;
+header {
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
+    -khtml-user-select: none;
     -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h1 {
     cursor: default;
     margin: 0;
     font-weight: normal;
@@ -128,6 +134,7 @@ h1 {
 }
 
 h2 {
+    cursor: default;
     margin: 0;
     font-weight: normal;
     font-size: 18pt;
