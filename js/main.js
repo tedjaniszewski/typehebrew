@@ -22,14 +22,13 @@ $(
 
         function convert(text) {
             // Handle terminal kaf
-            text = text.replace(/k(?=[f:]\b)/igm, '\u05DA');
+            text = text.replace(/k(?=[f:][\s])|k(?=[f:]$)|k(?=[f:]$)|k(?=\s)|k$/igm, '\u05DA');
             
             // Handle other terminal letters
-            text = text.replace(/k\b/igm, '\u05DA');
-            text = text.replace(/m\b/igm, '\u05DD');
-            text = text.replace(/n\b/igm, '\u05DF');
-            text = text.replace(/p\b/igm, '\u05E3');
-            text = text.replace(/c\b/igm, '\u05E5');
+            text = text.replace(/m(?=\s)|m$/igm, '\u05DD');
+            text = text.replace(/n(?=\s)|n$/igm, '\u05DF');
+            text = text.replace(/p(?=\s)|p$/igm, '\u05E3');
+            text = text.replace(/c(?=\s)|c$/igm, '\u05E5');
             
             // Handle other letters
             text = text.replace(/\)/gm, '\u05D0');
