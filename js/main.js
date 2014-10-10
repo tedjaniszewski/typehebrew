@@ -69,9 +69,11 @@ $(
             text = text.replace(/o/igm, '\u05B9');
             text = text.replace(/u/igm, '\u05BB');
             text = text.replace(/:/gm, '\u05B0');
-            text = text.replace(/-/gm, '\u05BE');
             text = text.replace(/\./gm, '\u05BC');
-            text = text.replace(/,/gm, '\u05BF');
+            text = text.replace(/</gm, '\u05AB');
+            text = text.replace(/,/gm, '\u05A3');
+            text = text.replace(/\|/gm, '\u05BD');
+            text = text.replace(/-/gm, '\u05BE');
             text = text.replace(/;/gm, '\u05C3');
             text = text.replace(/\n/g, '<br />');
             text = text.replace(/j/igm, '');
