@@ -1,35 +1,54 @@
 $(
     function () {
-        $('textarea').css('border-radius', '8px');
+
+        // Set #beta-code border radius (cross-browser styling) and select all its text
+        $('#beta-code').css('border-radius', '8px').select();
+
+        // Select contents of #hebrew
+        $('#selectall').click(
+            function () {
+                SelectText('hebrew');
+                return false;
+            }
+        );
+
+        // Fade in about page
         $('#aboutlink').click(
             function () {
                 $('#about').fadeToggle('slow');
                 return false;
             }
         );
+
+        // Fade in Beta Code key
         $('#keylink').click(
             function () {
                 $('#key').fadeToggle('slow');
                 return false;
             }
         );
-        $('#hebrew').html(convert($('#betacode').val()));
-        $('#betacode').bind('textchange',
+
+        // Run convert() on load
+        $('#hebrew').html(convert($('#beta-code').val()));
+
+        // Run convert() on textchange
+        $('#beta-code').bind('textchange',
             function (event) {
                 $('#hebrew').html(convert($(this).val()));
             }
-        ).select();
+        )
 
+        // Convert Beta Code in #beta-code to Unicode in #hebrew
         function convert(text) {
             // Handle terminal kaf
             text = text.replace(/k(?=[f:][\s])|k(?=[f:]$)|k(?=[f:]$)|k(?=\s)|k$/igm, '\u05DA');
-            
+
             // Handle other terminal letters
             text = text.replace(/m(?=\s)|m$/igm, '\u05DD');
             text = text.replace(/n(?=\s)|n$/igm, '\u05DF');
             text = text.replace(/p(?=\s)|p$/igm, '\u05E3');
             text = text.replace(/c(?=\s)|c$/igm, '\u05E5');
-            
+
             // Handle other letters
             text = text.replace(/\)/gm, '\u05D0');
             text = text.replace(/b/igm, '\u05D1');
@@ -79,10 +98,26 @@ $(
             text = text.replace(/j/igm, '');
             text = text.replace(/v/igm, '');
 
-            // Handle final forms.
-            
-            
             return text;
+        }
+        
+        // From http://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+        function SelectText(element) {
+            var doc = document
+                , text = doc.getElementById(element)
+                , range, selection
+            ;    
+            if (doc.body.createTextRange) {
+                range = document.body.createTextRange();
+                range.moveToElementText(text);
+                range.select();
+            } else if (window.getSelection) {
+                selection = window.getSelection();        
+                range = document.createRange();
+                range.selectNodeContents(text);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
         }
     }
 );
