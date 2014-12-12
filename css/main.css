@@ -197,7 +197,10 @@ textarea {
 #key, #about {
     width: 325px;
     float: left;
-    margin: 275px 0 50px 50px;
+    margin: 35px 0 50px 50px;
+}
+
+#about {
     display: none;
 }
 

@@ -20,14 +20,6 @@ $(
             }
         );
 
-        // Fade in Beta Code key
-        $('#keylink').click(
-            function () {
-                $('#key').fadeToggle('slow');
-                return false;
-            }
-        );
-
         // Run convert() on load
         $('#hebrew').html(convert($('#beta-code').val()));
 
