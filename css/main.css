@@ -30,12 +30,10 @@ html {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
     text-shadow: none;
 }
 
@@ -194,6 +192,21 @@ textarea {
     border: none;
 }
 
+textarea::selection {
+    color: #ecf0f1;
+    background-color: #444;
+}
+
+textarea::-moz-selection {
+    color: #ecf0f1;
+    background-color: #444;
+}
+
+textarea::-webkit-selection {
+    color: #ecf0f1;
+    background-color: #444;
+}
+
 #key, #about {
     width: 325px;
     float: left;
@@ -202,19 +215,6 @@ textarea {
 
 #about {
     display: none;
-}
-
-textarea::selection {
-    background:#444;
-    color:#ecf0f1;
-}
-textarea::-moz-selection {
-    background:#444;
-    color:#ecf0f1;
-}
-textarea::-webkit-selection {
-    background:#444;
-    color:#ecf0f1;
 }
 
 
