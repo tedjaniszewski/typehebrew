@@ -86,6 +86,8 @@ $(
             text = text.replace(/\|/gm, '\u05BD');
             text = text.replace(/-/gm, '\u05BE');
             text = text.replace(/;/gm, '\u05C3');
+            text = text.replace(/\//gm, '\u05F3');
+            text = text.replace(/\/\//gm, '\u05F4');
             text = text.replace(/\n/g, '<br />');
             text = text.replace(/j/igm, '');
             text = text.replace(/v/igm, '');
