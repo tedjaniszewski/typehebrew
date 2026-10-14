@@ -28,7 +28,6 @@
                 <section class="output" aria-label="Hebrew">
                     <div id="hebrew" lang="he" dir="rtl"></div>
                     <div class="actions">
-                        <button type="button" class="link" data-select="hebrew" title="Select the Hebrew text">SELECT ALL</button>
                         <button type="button" class="link" data-copy="hebrew" title="Copy the Hebrew text">COPY</button>
                     </div>
                 </section>
@@ -37,12 +36,14 @@
                     <div id="transliteration" lang="he-Latn"></div>
                     <div class="actions">
                         <label class="visuallyhidden" for="scheme">Transliteration scheme</label>
-                        <select id="scheme">
-                            <option value="sbl">SBL</option>
-                            <option value="je">JEWISH ENCYCLOPEDIA</option>
-                            <option value="lambdin">LAMBDIN</option>
-                        </select>
-                        <button type="button" class="link" data-select="transliteration" title="Select the transliteration">SELECT ALL</button>
+                        <span class="picker">
+                            <span id="scheme-label" aria-hidden="true">SBL</span>
+                            <select id="scheme">
+                                <option value="sbl">SBL</option>
+                                <option value="je">JEWISH ENCYCLOPEDIA</option>
+                                <option value="lambdin">LAMBDIN</option>
+                            </select>
+                        </span>
                         <button type="button" class="link" data-copy="transliteration" title="Copy the transliteration">COPY</button>
                     </div>
                 </section>
@@ -53,7 +54,7 @@
 
             <aside id="sidebar">
                 <div id="about" hidden>
-                    <p>TypeHebrew is an online Hebrew Beta Code to Unicode converter. When you type Beta Code into the dark box, the site turns it into Unicode Hebrew above it, along with a transliteration. Pick a transliteration scheme from the menu, and use the "SELECT ALL" and "COPY" buttons to grab either line. Click any entry in the key to insert its code where your cursor is. The coding follows CCAT's <a href="lib/betacode-reference.html">Beta Coding</a> standard, with cantillation marks typed as their two-digit Michigan-Claremont numbers.</p>
+                    <p>TypeHebrew is an online Hebrew Beta Code to Unicode converter. When you type Beta Code into the dark box, the site turns it into Unicode Hebrew above it, along with a transliteration. Pick a transliteration scheme from the menu, and use the "COPY" buttons to copy either line. Click any entry in the key to insert its code where your cursor is. The coding follows CCAT's <a href="lib/betacode-reference.html">Beta Coding</a> standard, with cantillation marks typed as their two-digit Michigan-Claremont numbers.</p>
                     <p>Transliteration has to guess in a few places that the pointing leaves open. A shewa after a long vowel is read as vocal. A qamets before a silent shewa is read as qamets hatuf (<i>o</i>), so add a meteg (<code>|</code>) to a qamets whose shewa is vocal: <code>qf|+:lw.</code> gives <i>qāṭəlû</i>.</p>
                     <p>The Hebrew typeface you see is <a href="https://www.sbl-site.org/educational/BiblicalFonts_SBLHebrew.aspx">SBL Hebrew</a>, hosted locally with the help of Font Squirrel's brilliant <a href="https://www.fontsquirrel.com/tools/webfont-generator">webfont generator</a>. The Beta Code is set in Raph Levien's <a href="https://levien.com/type/myfonts/inconsolata.html">Inconsolata</a> and the interface in Huerta Tipográfica's <a href="https://www.huertatipografica.com/en/fonts/bitter-ht">Bitter</a>, both served via <a href="https://fonts.google.com/">Google Fonts</a>. I'm also indebted to <a href="https://html5boilerplate.com/">HTML5 Boilerplate</a>, ZURB's jQuery TextChange Plugin, and Cloud9 IDE, which made building the first version of this site much easier. Finally, I want to acknowledge Randy Hoyt's <a href="http://typegreek.com/">TypeGreek</a> and Logos Bible Software's <a href="https://www.logos.com/shibboleth">Shibboleth</a>, which inspired this project.</p>
                     <p>If you've found TypeHebrew helpful and would like to make a donation, just give something to the folks at <a href="https://siministries.org/">St. Irenaeus Ministries</a>.</p>

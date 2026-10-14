@@ -6,6 +6,7 @@
         hebrew = document.getElementById('hebrew'),
         transliteration = document.getElementById('transliteration'),
         scheme = document.getElementById('scheme'),
+        schemeLabel = document.getElementById('scheme-label'),
         key = document.getElementById('key'),
         about = document.getElementById('about'),
         DOTTED_CIRCLE = '\u25CC',
@@ -25,9 +26,11 @@
         var tokens = TH.parse(betaCode.value);
         hebrew.textContent = TH.toHebrew(tokens);
         transliteration.textContent = TH.transliterate(tokens, scheme.value);
+        schemeLabel.textContent = scheme.options[scheme.selectedIndex].text;
     }
 
     // Select the contents of an element, as if highlighted with the mouse
+    // (the fallback when the browser won't let us copy)
     function selectContents(element) {
         var range = document.createRange(),
             selection = window.getSelection();
@@ -188,12 +191,6 @@
     key.addEventListener('click', function (event) {
         var button = event.target.closest('.card');
         if (button) { insertCode(button.getAttribute('data-code')); }
-    });
-
-    document.querySelectorAll('[data-select]').forEach(function (button) {
-        button.addEventListener('click', function () {
-            selectContents(document.getElementById(button.getAttribute('data-select')));
-        });
     });
 
     document.querySelectorAll('[data-copy]').forEach(function (button) {
