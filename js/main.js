@@ -1,117 +1,218 @@
-$(
-    function () {
+(function () {
+    'use strict';
 
-        // Set #beta-code border radius (cross-browser styling) and select all its text
-        $('#beta-code').css('border-radius', '8px').select();
+    var TH = window.TypeHebrew,
+        betaCode = document.getElementById('beta-code'),
+        hebrew = document.getElementById('hebrew'),
+        transliteration = document.getElementById('transliteration'),
+        scheme = document.getElementById('scheme'),
+        schemeLabel = document.getElementById('scheme-label'),
+        key = document.getElementById('key'),
+        about = document.getElementById('about'),
+        DOTTED_CIRCLE = '\u25CC',
+        // Phones and tablets: don't pop up the on-screen keyboard unasked.
+        touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
-        // Select contents of #hebrew
-        $('#selectall').click(
-            function () {
-                SelectText('hebrew');
-                return false;
-            }
-        );
+    // Remember the chosen transliteration scheme between visits.
+    function loadScheme() {
+        try { return localStorage.getItem('typehebrew-scheme'); } catch (e) { return null; }
+    }
+    function saveScheme(value) {
+        try { localStorage.setItem('typehebrew-scheme', value); } catch (e) { /* private mode */ }
+    }
 
-        // Fade in about page
-        $('#aboutlink').click(
-            function () {
-                $('#about').fadeToggle('slow');
-                return false;
-            }
-        );
+    // Convert the Beta Code in #beta-code into #hebrew and #transliteration
+    function convert() {
+        var tokens = TH.parse(betaCode.value);
+        hebrew.textContent = TH.toHebrew(tokens);
+        transliteration.textContent = TH.transliterate(tokens, scheme.value);
+        schemeLabel.textContent = scheme.options[scheme.selectedIndex].text;
+    }
 
-        // Run convert() on load
-        $('#hebrew').html(convert($('#beta-code').val()));
+    // Select the contents of an element, as if highlighted with the mouse
+    // (the fallback when the browser won't let us copy)
+    function selectContents(element) {
+        var range = document.createRange(),
+            selection = window.getSelection();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
 
-        // Run convert() on textchange
-        $('#beta-code').bind('textchange',
-            function (event) {
-                $('#hebrew').html(convert($(this).val()));
-            }
-        )
+    function copyContents(element, button) {
+        var text = element.textContent,
+            label = button.textContent;
 
-        // Convert Beta Code in #beta-code to Unicode in #hebrew
-        function convert(text) {
-            // Handle terminal kaf
-            text = text.replace(/k(?=[f:][\s])|k(?=[f:]$)|k(?=[f:]$)|k(?=[\s-;])|k$/igm, '\u05DA');
-
-            // Handle other terminal letters
-            text = text.replace(/m(?=[\s-;])|m$/igm, '\u05DD');
-            text = text.replace(/n(?=[\s-;])|n$/igm, '\u05DF');
-            text = text.replace(/p(?=[\s-;])|p$/igm, '\u05E3');
-            text = text.replace(/c(?=[\s-;])|c$/igm, '\u05E5');
-
-            // Handle other letters
-            text = text.replace(/\)/gm, '\u05D0');
-            text = text.replace(/b/igm, '\u05D1');
-            text = text.replace(/g/igm, '\u05D2');
-            text = text.replace(/d/igm, '\u05D3');
-            text = text.replace(/h/igm, '\u05D4');
-            text = text.replace(/w/igm, '\u05D5');
-            text = text.replace(/z/igm, '\u05D6');
-            text = text.replace(/x/igm, '\u05D7');
-            text = text.replace(/\+/gm, '\u05D8');
-            text = text.replace(/y/igm, '\u05D9');
-            text = text.replace(/k/igm, '\u05DB');
-            text = text.replace(/l/igm, '\u05DC');
-            text = text.replace(/m/igm, '\u05DE');
-            text = text.replace(/n/igm, '\u05E0');
-            text = text.replace(/s/igm, '\u05E1');
-            text = text.replace(/\(/gm, '\u05E2');
-            text = text.replace(/p/igm, '\u05E4');
-            text = text.replace(/c/igm, '\u05E6');
-            text = text.replace(/q/igm, '\u05E7');
-            text = text.replace(/r/igm, '\u05E8');
-            text = text.replace(/#/gm, '\u05E9');
-            text = text.replace(/&/gm, '\u05E9\u05C2');
-            text = text.replace(/\$/gm, '\u05E9\u05C1');
-            text = text.replace(/t/igm, '\u05EA');
-            text = text.replace(/:a/igm, '\u05B2');
-            text = text.replace(/:f/igm, '\u05B3');
-            text = text.replace(/:e/igm, '\u05B1');
-            text = text.replace(/a:/igm, '\u05B2');
-            text = text.replace(/f:/igm, '\u05B3');
-            text = text.replace(/e:/igm, '\u05B1');
-            text = text.replace(/a/igm, '\u05B7');
-            text = text.replace(/f/igm, '\u05B8');
-            text = text.replace(/i/igm, '\u05B4');
-            text = text.replace(/e/igm, '\u05B6');
-            text = text.replace(/"/gm, '\u05B5');
-            text = text.replace(/o/igm, '\u05B9');
-            text = text.replace(/u/igm, '\u05BB');
-            text = text.replace(/:/gm, '\u05B0');
-            text = text.replace(/\./gm, '\u05BC');
-            text = text.replace(/</gm, '\u05AB');
-            text = text.replace(/,/gm, '\u05A3');
-            text = text.replace(/\|/gm, '\u05BD');
-            text = text.replace(/-/gm, '\u05BE');
-            text = text.replace(/;/gm, '\u05C3');
-            text = text.replace(/\//gm, '\u05F3');
-            text = text.replace(/\/\//gm, '\u05F4');
-            text = text.replace(/\n/g, '<br />');
-            text = text.replace(/j/igm, '');
-            text = text.replace(/v/igm, '');
-
-            return text;
+        function done(ok) {
+            button.textContent = ok ? 'COPIED' : 'PRESS CTRL+C';
+            setTimeout(function () { button.textContent = label; }, 1500);
         }
-        
-        // From http://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
-        function SelectText(element) {
-            var doc = document
-                , text = doc.getElementById(element)
-                , range, selection
-            ;    
-            if (doc.body.createTextRange) {
-                range = document.body.createTextRange();
-                range.moveToElementText(text);
-                range.select();
-            } else if (window.getSelection) {
-                selection = window.getSelection();        
-                range = document.createRange();
-                range.selectNodeContents(text);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(function () { done(true); }, function () {
+                selectContents(element);
+                done(false);
+            });
+        } else {
+            selectContents(element);
+            try { done(document.execCommand('copy')); } catch (e) { done(false); }
         }
     }
-);
+
+    // Where the key inserts codes. Until the box has been used, that's the
+    // end of the text rather than the start.
+    var caret = null;
+    function rememberCaret() {
+        caret = { start: betaCode.selectionStart, end: betaCode.selectionEnd };
+    }
+
+    // Insert a code at the cursor in #beta-code (used by the key)
+    function insertCode(code) {
+        var at = caret || { start: betaCode.value.length, end: betaCode.value.length };
+        betaCode.setRangeText(code, at.start, at.end, 'end');
+        rememberCaret();
+        convert();
+        if (!touch) { betaCode.focus(); }
+    }
+
+    // ------------------------------------------------------------------
+    // The key, built from the converter's own tables
+    // ------------------------------------------------------------------
+
+    function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) { node.className = className; }
+        if (text !== undefined) { node.textContent = text; }
+        return node;
+    }
+
+    function card(entry) {
+        var button = el('button', 'card'),
+            glyph = el('span', 'glyph', entry.glyph),
+            codes = el('span', 'codes');
+
+        button.type = 'button';
+        button.setAttribute('data-code', entry.code);
+        button.title = 'Insert ' + entry.code;
+        glyph.lang = 'he';
+        glyph.setAttribute('aria-hidden', 'true');
+
+        codes.appendChild(el('kbd', '', entry.code));
+        (entry.also || []).forEach(function (code) {
+            codes.appendChild(document.createTextNode(' '));
+            codes.appendChild(el('kbd', 'alt', code));
+        });
+
+        button.appendChild(glyph);
+        button.appendChild(el('span', 'name', entry.name));
+        button.appendChild(codes);
+        return button;
+    }
+
+    function section(title, entries, options) {
+        options = options || {};
+        var wrapper = el(options.collapsible ? 'details' : 'section', 'key-section'),
+            heading = el(options.collapsible ? 'summary' : 'h3', '', title),
+            grid = el('div', 'cards');
+
+        wrapper.appendChild(heading);
+        if (options.note) { wrapper.appendChild(el('p', 'note', options.note)); }
+        entries.forEach(function (entry) { grid.appendChild(card(entry)); });
+        wrapper.appendChild(grid);
+        return wrapper;
+    }
+
+    function mark(he) {
+        return DOTTED_CIRCLE + he;
+    }
+
+    function buildKey() {
+        var consonants = TH.CONSONANTS.map(function (c) {
+            return {
+                code: c.code,
+                name: c.name,
+                glyph: (c.dot ? c.he + c.dot : c.he) + (c.fin ? ' ' + c.fin : '')
+            };
+        });
+
+        var vowels = TH.VOWELS.map(function (v) {
+            return { code: v.code, name: v.name, glyph: mark(v.he), also: v.alt };
+        });
+        // Vowel letters, inserted after the hireq, tsere and holem cards.
+        vowels.splice(3, 0, { code: 'iy', name: 'hireq yod', glyph: mark('\u05B4\u05D9') });
+        vowels.splice(7, 0, { code: 'ow', name: 'holem waw', glyph: '\u05D5\u05B9', also: ['wo'] });
+        vowels.splice(9, 0, { code: 'w.', name: 'shureq', glyph: '\u05D5' + TH.DAGESH });
+
+        var marks = [{ code: '.', name: 'dagesh', glyph: mark(TH.DAGESH) }]
+            .concat(TH.PUNCTUATION.map(function (p) {
+                return { code: p.code, name: p.name, glyph: p.he, also: p.alt };
+            }))
+            .concat([{ code: 'j', name: 'no final form', glyph: '\u05DE', also: ['v'] }]);
+
+        function accents(group) {
+            return TH.ACCENTS.filter(function (a) { return a.group === group; })
+                .map(function (a) {
+                    return { code: a.code, name: a.name, glyph: mark(a.he), also: a.legacy };
+                });
+        }
+
+        key.appendChild(section('Consonants', consonants, {
+            note: 'Final forms are added automatically at the end of a word.'
+        }));
+        key.appendChild(section('Vowels', vowels));
+        key.appendChild(section('Other marks', marks));
+        key.appendChild(section('Cantillation: disjunctive accents', accents('disjunctive'), {
+            collapsible: true,
+            note: 'Type an accent\'s number after the letter it sits on, after any vowel: b.:r")$i73yt. ' +
+                'Pre- and postpositive accents go on the first or last letter of the word.'
+        }));
+        key.appendChild(section('Cantillation: conjunctive accents', accents('conjunctive'), { collapsible: true }));
+        key.appendChild(section('Cantillation: meteg and other marks', accents('other'), { collapsible: true }));
+    }
+
+    // ------------------------------------------------------------------
+    // Wiring
+    // ------------------------------------------------------------------
+
+    var saved = loadScheme();
+    if (saved && TH.SCHEMES[saved]) { scheme.value = saved; }
+
+    buildKey();
+    convert();
+    betaCode.addEventListener('input', convert);
+    ['input', 'keyup', 'mouseup', 'touchend', 'select', 'blur'].forEach(function (type) {
+        betaCode.addEventListener(type, rememberCaret);
+    });
+    scheme.addEventListener('change', function () {
+        saveScheme(scheme.value);
+        convert();
+    });
+
+    key.addEventListener('click', function (event) {
+        var button = event.target.closest('.card');
+        if (button) { insertCode(button.getAttribute('data-code')); }
+    });
+
+    document.querySelectorAll('[data-copy]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            copyContents(document.getElementById(button.getAttribute('data-copy')), button);
+        });
+    });
+
+    function toggle(link, panel) {
+        link.addEventListener('click', function () {
+            panel.hidden = !panel.hidden;
+            link.setAttribute('aria-expanded', String(!panel.hidden));
+            if (!panel.hidden && touch) {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+    toggle(document.getElementById('keylink'), key);
+    toggle(document.getElementById('aboutlink'), about);
+
+    if (!touch) {
+        betaCode.select();
+        rememberCaret();
+    }
+}());

@@ -1,160 +1,54 @@
-/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
-
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
 /* ==========================================================================
-   Base styles: opinionated defaults
+   TypeHebrew
    ========================================================================== */
 
-html,
-button,
-input,
-select,
-textarea {
-    color: #222;
+@font-face {
+    font-family: 'SBL Hebrew';
+    src: url('fonts/sblhebrew.woff') format('woff'),
+         url('fonts/sblhebrew.ttf') format('truetype');
+    font-display: swap;
+}
+
+:root {
+    --bg: #ecf0f1;
+    --ink: #111;
+    --ink-soft: #555;
+    --card: #f7f9f9;
+    --line: #cfd6d8;
+    --dark: #111;
+    --dark-text: #ecf0f1;
+    --dark-select: #444;
+    --gutter: 50px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 html {
     font-size: 1em;
     line-height: 1.4;
-}
-
-/*
- * Remove text-shadow in selection highlight: h5bp.com/i
- * These selection rule sets have to be separate.
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-    background-color: #AAA;
-    text-shadow: none;
-}
-
-::selection {
-    background-color: #AAA;
-    text-shadow: none;
-}
-
-::-webkit-selection {
-    background-color: #AAA;
-    text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-/*
- * Remove the gap between images, videos, audio and canvas and the bottom of
- * their containers: h5bp.com/i/440
- */
-
-audio,
-canvas,
-img,
-video {
-    vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
-/* ==========================================================================
-   Browse Happy prompt
-   ========================================================================== */
-
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-@font-face {
-    font-family: 'SBL Hebrew';
-    src: url('fonts/sblhebrew.eot');
-    src: url('fonts/sblhebrew.eot?iefix') format('eot'),
-         url('fonts/sblhebrew.woff') format('woff'),
-         url('fonts/sblhebrew.ttf') format('truetype'),
-         url('fonts/sblhebrew.svg#SBLHebrew') format('svg');
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
+    margin: 0;
     font-family: 'Bitter', serif;
-    background-color: #ecf0f1;
-    color: #111;
+    background-color: var(--bg);
+    color: var(--ink);
 }
 
-header {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+::selection {
+    background-color: #aaa;
+    text-shadow: none;
 }
 
-h1 {
-    cursor: default;
-    margin: 0;
-    font-weight: normal;
-    font-size: 175pt;
-    font-family: "SBL Hebrew";
-    height: 190px;
-    position: relative;
-        top: -50px;
-    z-index: -1;
-}
-
-h2 {
-    cursor: default;
-    margin: 0;
-    font-weight: normal;
-    font-size: 18pt;
-}
-
-h3 {
-    font-size: 10pt;
-    margin-top: 0px;
-    margin-bottom: 30px;
-}
-
-pre {
-    margin: 0 25px;
-    font-family: 'Inconsolata', monospace;
-    float: left;
+a {
+    font-weight: bold;
+    color: var(--ink);
 }
 
 p {
@@ -162,104 +56,10 @@ p {
     text-align: left;
 }
 
-a {
-    font-weight: bold;
-    color: #111;
-}
-
-#content {
-    text-align: center;
-    width: 400px;
-    float: left;
-    margin: 0 50px 50px 50px;
-}
-
-#hebrew {
-    width: 400px;
-    height: auto;
-    margin: auto;
-    font-size: 30pt;
-    font-family: "SBL Hebrew", serif;
-    color: #000;
-    direction: rtl;
-    text-align: right;
-    overflow: visible;
-}
-
-textarea {
+code,
+kbd {
     font-family: 'Inconsolata', monospace;
-    background-color: #111;
-    width: 400px;
-    height: 100px;
-    padding: 15px;
-    margin: auto;
-    font-size: 16pt;
-    color: #ecf0f1;
-    overflow: auto;
-    border: none;
 }
-
-textarea::selection {
-    color: #ecf0f1;
-    background-color: #444;
-}
-
-textarea::-moz-selection {
-    color: #ecf0f1;
-    background-color: #444;
-}
-
-textarea::-webkit-selection {
-    color: #ecf0f1;
-    background-color: #444;
-}
-
-#key, #about {
-    width: 325px;
-    float: left;
-    margin: 35px 0 50px 50px;
-}
-
-#about {
-    display: none;
-}
-
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Image replacement
- */
-
-.ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-}
-
-.ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
-}
-
-/*
- * Hide from both screenreaders and browsers: h5bp.com/u
- */
-
-.hidden {
-    display: none !important;
-    visibility: hidden;
-}
-
-/*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
 
 .visuallyhidden {
     border: 0;
@@ -270,147 +70,367 @@ textarea::-webkit-selection {
     padding: 0;
     position: absolute;
     width: 1px;
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
-
-/*
- * Hide visually and from screenreaders, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
-}
-
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-/*
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
-
-.clearfix {
-    *zoom: 1;
+    white-space: nowrap;
 }
 
 /* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
+   Layout
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+#page {
+    display: grid;
+    grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+    column-gap: var(--gutter);
+    max-width: 1280px;
+    padding: 0 var(--gutter) var(--gutter);
 }
 
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
+#content {
+    text-align: center;
+    min-width: 0;
+}
+
+#sidebar {
+    margin-top: 35px;
+    min-width: 0;
 }
 
 /* ==========================================================================
-   Print styles.
-   Inlined to avoid required HTTP connection: h5bp.com/r
+   Header
+   ========================================================================== */
+
+header {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+h1 {
+    cursor: default;
+    margin: 0;
+    font-weight: normal;
+    font-size: 175pt;
+    line-height: 1.4;
+    font-family: 'SBL Hebrew', serif;
+    height: 190px;
+    position: relative;
+    top: -50px;
+    z-index: -1;
+}
+
+h2 {
+    cursor: default;
+    margin: 0;
+    font-weight: normal;
+    font-size: 18pt;
+}
+
+nav {
+    margin-bottom: 22px;
+}
+
+/* Buttons that look like the site's bold, small-caps links */
+.link {
+    font-family: 'Bitter', serif;
+    font-weight: bold;
+    font-size: 10pt;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    padding: 8px 6px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration-thickness: 2px;
+}
+
+.link:focus-visible,
+.card:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Converter
+   ========================================================================== */
+
+.output {
+    margin-bottom: 14px;
+}
+
+#hebrew {
+    min-height: 1.6em;
+    font-size: 30pt;
+    line-height: 1.6;
+    font-family: 'SBL Hebrew', serif;
+    color: #000;
+    direction: rtl;
+    text-align: right;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+#transliteration {
+    min-height: 1.5em;
+    font-family: 'Gentium Plus', 'Gentium Book Plus', 'Bitter', serif;
+    font-style: italic;
+    font-size: 15pt;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px 4px;
+}
+
+/* The scheme menu: the current choice shown as text with an arrow beside
+   it, and the real <select> laid invisibly on top so the browser's own
+   picker still opens (a <select> is always as wide as its longest option). */
+.picker {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-right: auto;
+    padding: 8px 6px;
+    font-family: 'Bitter', serif;
+    font-weight: bold;
+    font-size: 10pt;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+}
+
+.picker::after {
+    content: '';
+    margin-left: 6px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--ink);
+}
+
+.picker:focus-within {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.picker select {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    opacity: 0;
+    font-size: 16px; /* stops iOS zooming in when the menu is tapped */
+    cursor: pointer;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    height: 120px;
+    margin: 8px 0 0;
+    padding: 15px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 16pt;
+    color: var(--dark-text);
+    background-color: var(--dark);
+    border: none;
+    border-radius: 8px;
+    overflow: auto;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+textarea::selection {
+    color: var(--dark-text);
+    background-color: var(--dark-select);
+}
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+
+#about {
+    margin-bottom: 30px;
+    animation: fadein 0.4s ease;
+}
+
+#about code {
+    font-size: 1.05em;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ==========================================================================
+   Key
+   ========================================================================== */
+
+.key-section {
+    margin-bottom: 24px;
+}
+
+.key-section > h3,
+.key-section > summary {
+    font-size: 10pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+}
+
+.key-section > summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.key-section > summary::-webkit-details-marker {
+    display: none;
+}
+
+.key-section > summary::before {
+    content: '+';
+    display: inline-block;
+    width: 1em;
+    font-family: 'Inconsolata', monospace;
+}
+
+.key-section[open] > summary::before {
+    content: '\2212';
+}
+
+.note {
+    font-size: 10pt;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    gap: 8px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 0;
+    padding: 6px 4px 8px;
+    font: inherit;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: border-color 0.15s, background-color 0.15s;
+}
+
+.card:hover {
+    background: #fff;
+    border-color: var(--ink);
+}
+
+.card:active {
+    transform: scale(0.97);
+}
+
+.glyph {
+    font-family: 'SBL Hebrew', serif;
+    font-size: 24pt;
+    line-height: 1.5;
+    color: #000;
+    direction: rtl;
+    white-space: nowrap;
+}
+
+.name {
+    font-size: 9pt;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.codes {
+    margin-top: 2px;
+}
+
+.codes kbd {
+    display: inline-block;
+    font-size: 11pt;
+    line-height: 1.3;
+    padding: 0 6px;
+    color: var(--dark-text);
+    background: var(--dark);
+    border: 1px solid var(--dark);
+    border-radius: 4px;
+}
+
+.codes kbd.alt {
+    color: var(--ink);
+    background: transparent;
+}
+
+/* ==========================================================================
+   Small screens: one column, the key below the converter
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    :root {
+        --gutter: 16px;
+    }
+
+    #page {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 110pt;
+        height: 130px;
+        top: -38px;
+    }
+
+    #hebrew {
+        font-size: 26pt;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+        gap: 6px;
+    }
+}
+
+/* ==========================================================================
+   Print
    ========================================================================== */
 
 @media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
+    #sidebar,
+    nav,
+    .actions,
+    textarea {
+        display: none;
     }
 }

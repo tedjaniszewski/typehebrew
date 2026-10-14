@@ -1,0 +1,8 @@
+{
+  "name": "typehebrew",
+  "private": true,
+  "description": "A web-based Hebrew Beta Code to Unicode converter",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

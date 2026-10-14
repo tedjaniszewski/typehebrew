@@ -1,104 +1,69 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>TypeHebrew</title>
-        <meta name="description" content="">
+        <meta name="description" content="Type Hebrew in Beta Code and get Unicode Hebrew, with vowels, cantillation, and SBL, Lambdin, or Jewish Encyclopedia transliteration.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700|Bitter:400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/normalize.css">
+        <meta name="theme-color" content="#ecf0f1">
+        <link rel="icon" href="favicon.ico">
+        <link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=Gentium+Plus:ital@0;1&family=Inconsolata:wght@400;700&display=swap">
         <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <div id="page">
+            <main id="content">
+                <header>
+                    <h1 aria-hidden="true">א</h1>
+                    <h2>TypeHebrew</h2>
+                    <nav>
+                        <button type="button" class="link" id="keylink" aria-controls="key" aria-expanded="true">KEY</button>
+                        <button type="button" class="link" id="aboutlink" aria-controls="about" aria-expanded="false">ABOUT</button>
+                    </nav>
+                </header>
 
-        <!-- Add your site or application content here -->
-        <div id="content">
-            <header>
-                <h1>א</h1>
-                <h2>TypeHebrew</h2>
-                <h3><a id="selectall" title="Select converted Hebrew text" href="#">SELECT ALL</a> &nbsp; <a id="aboutlink" href="#">ABOUT</a></h3>
-            </header>
-            <div id="hebrew"></div>
-            <br />
-            <textarea spellcheck="false" id="beta-code">$:ma( yi&:rf)"l y:hwfh ):eloh"ynw. y:hwfh )exfd;</textarea>
-        </div>
-        <div id="key">
-<pre>alef      )
-bet       b
-gimel     g
-dalet     d
-he        h
-waw       w
-zayin     z
-het       x
-tet       +
-yod       y
-kaf       k
-lamed     l
-mem       m
-nun       n
-samek     s
-ayin      (
-pe        p
-tsade     c
-qof       q
-resh      r
-sin/shin  #
-sin       &
-shin      $
-taw       t</pre>
-<pre>patah           a
-qametz          f
-hireq           i
-hireq yod      iy
-segol           e
-tsere           "
-holam           o
-holem waw      ow
-qibbuts         u
-shureq         w.
+                <section class="output" aria-label="Hebrew">
+                    <div id="hebrew" lang="he" dir="rtl"></div>
+                    <div class="actions">
+                        <button type="button" class="link" data-copy="hebrew" title="Copy the Hebrew text">COPY</button>
+                    </div>
+                </section>
 
-schwa           :
-hateph-pathah  :a
-hateph-qametz  :f
-hateph-segol   :e
+                <section class="output" aria-label="Transliteration">
+                    <div id="transliteration" lang="he-Latn"></div>
+                    <div class="actions">
+                        <label class="visuallyhidden" for="scheme">Transliteration scheme</label>
+                        <span class="picker">
+                            <span id="scheme-label" aria-hidden="true">SBL</span>
+                            <select id="scheme">
+                                <option value="sbl">SBL</option>
+                                <option value="je">JEWISH ENCYCLOPEDIA</option>
+                                <option value="lambdin">LAMBDIN</option>
+                            </select>
+                        </span>
+                        <button type="button" class="link" data-copy="transliteration" title="Copy the transliteration">COPY</button>
+                    </div>
+                </section>
 
-dagesh          .
-ole             <
-munah           ,
-meteg           |
-maqqeph         -
-sof pasuq       ;
-geresh          /
-gershayim      //</pre>
-        </div>
-        <div id="about">
-            <p>TypeHebrew is an online Hebrew Beta Code to Unicode converter. When you type Beta Code into the grey box there, the site turns it into Unicode in the space above. If you click the "KEY" link, it will bring up CCAT's <a href="http://ccat.sas.upenn.edu/beta/key.html">Beta Coding</a> standard. To select all the Hebrew you've generated, click the "SELECT ALL" link.</p>
-            <p>The Hebrew typeface you see is <a href="http://www.sbl-site.org/educational/BiblicalFonts_SBLHebrew.aspx">SBL Hebrew</a>, hosted locally with the help of Font Squirrel's brilliant <a href="http://www.fontsquirrel.com/tools/webfont-generator">webfont generator</a>. The Beta Code is set in Raph Levien's <a href="http://levien.com/type/myfonts/inconsolata.html">Inconsolata</a> and the interface in Huerta Tipográfica's <a href="http://www.huertatipografica.com/fonts/bitter-ht">Bitter</a>, both served via <a href="https://www.google.com/fonts">Google Fonts</a>. I'm also indebted to <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>, ZURB's <a href="http://zurb.com/playground/jquery-text-change-custom-event">jQuery TextChange Plugin</a>, and <a href="https://c9.io/">Cloud9 IDE</a>, which made building this site much easier. Finally, I want to acknowledge Randy Hoyt's <a href="http://typegreek.com/">TypeGreek</a> and Logos Bible Software's <a href="https://www.logos.com/shibboleth">Shibboleth</a>, which inspired this project.</p>
-            <p>If you've found TypeHebrew helpful and would like to make a donation, just give something to the folks at <a href="http://siministries.org/">St. Irenaeus Ministries</a>.</p>
+                <label class="visuallyhidden" for="beta-code">Beta Code</label>
+                <textarea id="beta-code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off">$:ma( yi&amp;:rf)"l y:hwfh ):eloh"ynw. y:hwfh )exfd;</textarea>
+            </main>
+
+            <aside id="sidebar">
+                <div id="about" hidden>
+                    <p>TypeHebrew is an online Hebrew Beta Code to Unicode converter. When you type Beta Code into the dark box, the site turns it into Unicode Hebrew above it, along with a transliteration. Pick a transliteration scheme from the menu, and use the "COPY" buttons to copy either line. Click any entry in the key to insert its code where your cursor is. The coding follows CCAT's <a href="lib/betacode-reference.html">Beta Coding</a> standard, with cantillation marks typed as their two-digit Michigan-Claremont numbers.</p>
+                    <p>Transliteration has to guess in a few places that the pointing leaves open. A shewa after a long vowel is read as vocal. A qamets before a silent shewa is read as qamets hatuf (<i>o</i>), so add a meteg (<code>|</code>) to a qamets whose shewa is vocal: <code>qf|+:lw.</code> gives <i>qāṭəlû</i>.</p>
+                    <p>The Hebrew typeface you see is <a href="https://www.sbl-site.org/educational/BiblicalFonts_SBLHebrew.aspx">SBL Hebrew</a>, hosted locally with the help of Font Squirrel's brilliant <a href="https://www.fontsquirrel.com/tools/webfont-generator">webfont generator</a>. The Beta Code is set in Raph Levien's <a href="https://levien.com/type/myfonts/inconsolata.html">Inconsolata</a> and the interface in Huerta Tipográfica's <a href="https://www.huertatipografica.com/en/fonts/bitter-ht">Bitter</a>, both served via <a href="https://fonts.google.com/">Google Fonts</a>. I'm also indebted to <a href="https://html5boilerplate.com/">HTML5 Boilerplate</a>, ZURB's jQuery TextChange Plugin, and Cloud9 IDE, which made building the first version of this site much easier. Finally, I want to acknowledge Randy Hoyt's <a href="http://typegreek.com/">TypeGreek</a> and Logos Bible Software's <a href="https://www.logos.com/shibboleth">Shibboleth</a>, which inspired this project.</p>
+                    <p>If you've found TypeHebrew helpful and would like to make a donation, just give something to the folks at <a href="https://siministries.org/">St. Irenaeus Ministries</a>.</p>
+                </div>
+                <div id="key"></div>
+            </aside>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
+        <script src="js/typehebrew.js"></script>
         <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
     </body>
 </html>
