@@ -90,3 +90,16 @@ test('Jewish Encyclopedia transliteration', function () {
     assert.strictEqual(tr('t.owrfh', 'je'), 'torah');
     assert.strictEqual(tr('s"per', 'je'), 'sefer');
 });
+
+test('pasted Unicode Hebrew is read like Beta Code', function () {
+    assert.strictEqual(tr('שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃'),
+        'šəmaʿ yiśrāʾēl YHWH ʾĕlōhênû YHWH ʾeḥād.');
+    var gen = 'בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃';
+    assert.strictEqual(tr(gen), 'bərēʾšît bārāʾ ʾĕlōhîm ʾēt haššāmayim wəʾēt hāʾāreṣ.');
+    assert.strictEqual(tr(gen.normalize('NFC')), tr(gen), 'shin dot after the vowel (NFC order)');
+    sameHebrew(he(gen), gen, 'the Hebrew line shows the same text');
+    assert.strictEqual(tr('חׇכְמָה'), 'ḥokmâ', 'qamets qatan character');
+    assert.strictEqual(tr('קָֽטְלוּ', 'lambdin'), 'qāṭᵉlû');
+    assert.strictEqual(tr('כָּל־הָאָדָם', 'je'), 'kol-ha\'adam');
+    assert.strictEqual(tr('בְּרֵאשִׁית b.frf)'), 'bərēʾšît bārāʾ', 'Hebrew and Beta Code mixed');
+});
