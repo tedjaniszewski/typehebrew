@@ -2,8 +2,10 @@
  * TypeHebrew conversion engine
  *
  * Turns Hebrew Beta Code (CCAT / Michigan-Claremont) into Unicode Hebrew and
- * into Latin transliteration. Has no DOM dependencies, so it runs in the
- * browser (as window.TypeHebrew) and in Node (for the tests).
+ * into Latin transliteration. Unicode Hebrew in the input is read as the
+ * equivalent Beta Code, so pasted Hebrew can be transliterated too. Has no
+ * DOM dependencies, so it runs in the browser (as window.TypeHebrew) and in
+ * Node (for the tests).
  *
  * The input is parsed once into a list of tokens. Each consonant becomes a
  * "cluster" carrying the points and accents typed after it. Both outputs are
@@ -217,6 +219,36 @@
         });
     });
 
+    // Unicode Hebrew is accepted too, so pasted Hebrew (or a mix of Hebrew
+    // and Beta Code) parses exactly as if it had been typed in Beta Code.
+    CONSONANTS.forEach(function (c) {
+        if (!c.dot) { CONS_BY_CODE[c.he] = c; }
+        if (c.fin) { CONS_BY_CODE[c.fin] = c; }
+    });
+    CONSONANTS.forEach(function (c) {
+        if (c.dot) { MARK_CODES.push({ code: c.dot, kind: 'shinDot', item: c }); }
+    });
+    VOWELS.forEach(function (v) {
+        MARK_CODES.push({ code: v.he, kind: 'vowel', item: v });
+    });
+    MARK_CODES.push({ code: '\u05BA', kind: 'vowel', item: VOWELS.filter(function (v) { return v.id === 'holem'; })[0] });
+    MARK_CODES.push({ code: '\u05C7', kind: 'vowel', item: { id: 'qametsHatuf', he: '\u05C7' } });
+    MARK_CODES.push({ code: DAGESH, kind: 'dagesh' });
+    // Several accents share a character (pashta, telisha, meteg). Prefer
+    // the pre/postpositive reading, which is the safer one for the
+    // transliteration's stress guesses.
+    var accentByChar = {};
+    ACCENTS.forEach(function (a) {
+        var seen = accentByChar[a.he];
+        if (!seen || (a.pos && !seen.pos)) { accentByChar[a.he] = a; }
+    });
+    Object.keys(accentByChar).forEach(function (ch) {
+        MARK_CODES.push({ code: ch, kind: 'accent', item: accentByChar[ch] });
+    });
+    PUNCTUATION.forEach(function (p) {
+        PUNCT_CODES.push({ code: p.he, item: p });
+    });
+
     // Longest codes first, so ":a" wins over ":" and "//" over "/".
     function byLength(a, b) { return b.code.length - a.code.length; }
     MARK_CODES.sort(byLength);
@@ -243,6 +275,9 @@
             .replace(/[\u2013\u2014]/g, '-')
             .replace(/\u00A0/g, ' ')
             .replace(/\r\n?/g, '\n')
+            // Invisible joiners and direction marks found in pasted Hebrew,
+            // and rafe, which has no Beta Code equivalent.
+            .replace(/[\u034F\u200C\u200D\u200E\u200F\u05BF]/g, '')
             .toLowerCase();
     }
 
@@ -282,10 +317,14 @@
                 if (cluster) {
                     if (m.kind === 'vowel') { cluster.vowels.push(m.item); }
                     else if (m.kind === 'dagesh') { cluster.dagesh = true; }
+                    else if (m.kind === 'shinDot') {
+                        // In Unicode the shin/sin dot follows the letter.
+                        if (cluster.cons.he === m.item.he) { cluster.cons = m.item; }
+                    }
                     else { cluster.accents.push(m.item); }
                 } else {
                     // A mark with no letter to sit on: pass it through as is.
-                    tokens.push({ type: 'text', text: m.kind === 'dagesh' ? DAGESH : m.item.he, translit: '' });
+                    tokens.push({ type: 'text', text: m.kind === 'dagesh' ? DAGESH : (m.item.dot || m.item.he), translit: '' });
                 }
                 i += m.code.length;
                 continue;
